@@ -1,5 +1,7 @@
 package com.douma.fast.spring.boot.web.controller;
 
+import com.douma.fast.spring.boot.service.EnvService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    @Autowired
+    private EnvService envService;
+
     /**
      * 测试spring-boot
      *
@@ -20,6 +25,26 @@ public class HelloController {
     @GetMapping("spring-boot")
     public String helloWold(String name) {
         return "Hello World, " + name;
+    }
+
+    /**
+     * 测试当前环境
+     *
+     * @return
+     */
+    @GetMapping("env")
+    public String getConfig() {
+        return envService.getNowConfig();
+    }
+
+    /**
+     * 测试当前环境的配置
+     *
+     * @return
+     */
+    @GetMapping("get-config")
+    public String get() {
+        return envService.get();
     }
 
 }
