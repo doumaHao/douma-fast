@@ -1,1 +1,9 @@
 profile: dev_envrimont
+
+spring:
+  # redis配置 ###############################################
+  redis:
+    host: 192.168.1.9
+    port: 6379
+    password: magfin2018
+    database: 7

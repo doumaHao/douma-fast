@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Author haoxijun | doumaHao
  * @Create 2018-12-16 17:24
  */
-@SpringBootApplication
-public class SpringApp {
+@SpringBootApplication(scanBasePackages = {"com.douma"})
+public class DoumaFastApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringApp.class, args);
+        SpringApplication.run(DoumaFastApp.class, args);
     }
 
 }

@@ -1,6 +1,9 @@
 package com.douma.fast.spring.boot.web.controller;
 
+import com.douma.fast.redis.service.RedisService;
 import com.douma.fast.spring.boot.service.EnvService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    private final Logger log = LoggerFactory.getLogger(HelloController.class);
+
     @Autowired
     private EnvService envService;
+
+    @Autowired
+    private RedisService redisService;
 
     /**
      * 测试spring-boot
@@ -45,6 +53,21 @@ public class HelloController {
     @GetMapping("get-config")
     public String get() {
         return envService.get();
+    }
+
+    /**
+     * 测试 redis
+     *
+     * @return
+     */
+    @GetMapping("redis")
+    public String redis() {
+        String key = "key";
+        String value = "value";
+        redisService.put(key, value);
+        log.debug("存入缓存成功 key={},value={}", key, value);
+        value = (String) redisService.get(key);
+        return value;
     }
 
 }
