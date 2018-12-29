@@ -1,5 +1,6 @@
 package com.douma.fast.spring.boot.web.controller;
 
+import com.douma.fast.redis.service.AspetService;
 import com.douma.fast.redis.service.RedisService;
 import com.douma.fast.spring.boot.service.EnvService;
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public class HelloController {
 
     @Autowired
     private RedisService redisService;
+
+    @Autowired
+    private AspetService aspetService;
 
     /**
      * 测试spring-boot
@@ -68,6 +72,16 @@ public class HelloController {
         log.debug("存入缓存成功 key={},value={}", key, value);
         value = (String) redisService.get(key);
         return value;
+    }
+
+    /**
+     * 测试 aspect
+     *
+     * @return
+     */
+    @GetMapping("aspect")
+    public int aspect() {
+        return aspetService.testAspect(1, "bbbb");
     }
 
 }

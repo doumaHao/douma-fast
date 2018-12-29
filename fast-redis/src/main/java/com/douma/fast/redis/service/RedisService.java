@@ -44,7 +44,7 @@ public class RedisService {
      * @param value
      * @param timeout
      */
-    public void put(final String key, final Object value, long timeout) {
+    public void put(final String key, final Object value, final long timeout) {
         redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.MINUTES);
     }
 
@@ -56,7 +56,7 @@ public class RedisService {
      * @param timeout
      * @param timeUnit
      */
-    public void put(final String key, final Object value, long timeout, TimeUnit timeUnit) {
+    public void put(final String key, final Object value, final long timeout, final TimeUnit timeUnit) {
         redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
     }
 
@@ -68,7 +68,7 @@ public class RedisService {
      * @param timeout
      * @param timeUnit
      */
-    public Object getAndSet(final String key, final Object value, long timeout, TimeUnit timeUnit) {
+    public Object getAndSet(final String key, final Object value, final long timeout, final TimeUnit timeUnit) {
         Object obj = redisTemplate.opsForValue().getAndSet(key, value);
         redisTemplate.expire(key, timeout, timeUnit);
         return obj;
@@ -79,7 +79,7 @@ public class RedisService {
      *
      * @param key
      */
-    public void delete(String key) {
+    public void delete(final String key) {
         redisTemplate.delete(key);
     }
 
@@ -92,7 +92,13 @@ public class RedisService {
         return redisTemplate.opsForValue().get(key);
     }
 
-    public void expire(String key, long seconds) {
+    /**
+     * 设置过期时间
+     *
+     * @param key
+     * @param seconds
+     */
+    public void expire(final String key, final long seconds) {
         if (StrUtil.isBlank(key)) {
             throw new IllegalArgumentException("redis key为空");
         }
