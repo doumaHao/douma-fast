@@ -84,4 +84,9 @@ public class HelloController {
         return aspetService.testAspect(1, "bbbb");
     }
 
+    @GetMapping("aspect-err")
+    public int testAspectWithException() {
+        return aspetService.testAspectWithException(1);
+    }
+
 }

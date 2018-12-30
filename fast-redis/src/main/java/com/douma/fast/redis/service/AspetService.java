@@ -23,21 +23,17 @@ public class AspetService {
      * @param i
      * @return
      */
+    @DistributedLock
     public int testAspect(int i, String i2) {
-
-        int count = 1;
-        redisService.put(KEY, count);
-
-        for (int k = 0; k < 1; k++) {
-            new Runnable() {
-                @Override
-                public void run() {
-                    testDistributedLock();
-                }
-            }.run();
-        }
-
         return i + 1;
+    }
+
+    @DistributedLock
+    public int testAspectWithException(int i){
+
+        redisService.put("11111", "22222");
+
+        throw new RuntimeException("方法执行异常");
     }
 
     @DistributedLock

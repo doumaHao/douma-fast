@@ -56,12 +56,17 @@ public class DistributedLock4RedisAspet {
                 throw new RuntimeException("分布式锁获取超时");
             }
         }
+        log.info("分布式锁获取成功,开始执行...");
 
-        Object[] args = joinPoint.getArgs();
-        Object result = joinPoint.proceed(args);
+        try {
+            Object[] args = joinPoint.getArgs();
+            Object result = joinPoint.proceed(args);
+        } finally {
+            redisService.delete(key);
+            log.info("执行完成,解锁...");
+        }
 
-        redisService.delete(key);
-        return result;
+        return joinPoint.proceed(joinPoint.getArgs());
     }
 
     private String getkey(ProceedingJoinPoint joinPoint) {
