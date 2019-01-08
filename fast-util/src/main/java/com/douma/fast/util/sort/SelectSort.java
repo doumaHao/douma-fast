@@ -5,11 +5,11 @@ package com.douma.fast.util.sort;
  * @author: Douma | Hao xijun
  * @date: 2019/1/8 19:32
  */
-public class SelectSort {
+public class SelectSort extends Sort {
 
     public static void main(String[] args) {
         SelectSort selectSort = new SelectSort();
-        int[] ins = new int[]{4, 3, 2, 1};
+        int[] ins = new int[]{5, 4, 3, 2, 1};
 
         selectSort.sort(ins);
 
@@ -50,9 +50,7 @@ public class SelectSort {
             }
             index++;
         }
-        ins[start - 1] = ins[start - 1] + ins[minIndex];
-        ins[minIndex] = ins[start - 1] - ins[minIndex];
-        ins[start - 1] = ins[start - 1] - ins[minIndex];
+        ins = replace(ins, start - 1, minIndex);
 
         return ins;
     }

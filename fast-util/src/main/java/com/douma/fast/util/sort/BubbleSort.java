@@ -5,11 +5,11 @@ package com.douma.fast.util.sort;
  * @author: Douma | Hao xijun
  * @date: 2019/1/4 10:29
  */
-public class BubbleSort {
+public class BubbleSort extends Sort{
 
     public static void main(String[] args) {
         BubbleSort bubbleSort = new BubbleSort();
-        int[] ins = new int[]{4, 3, 2, 1};
+        int[] ins = new int[]{5, 4, 3, 2, 1};
 
         bubbleSort.sort(ins);
 
@@ -42,9 +42,7 @@ public class BubbleSort {
         int index = 0;
         while (index < ins.length - end) {
             if (ins[index] >= ins[index + 1]) {
-                ins[index] = ins[index] + ins[index + 1];
-                ins[index + 1] = ins[index] - ins[index + 1];
-                ins[index] = ins[index] - ins[index + 1];
+                ins = replace(ins, index, index+1);
             }
             index++;
         }
