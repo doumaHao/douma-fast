@@ -27,6 +27,7 @@
     <modules>
         <module>fast-spring-boot</module>
         <module>fast-redis</module>
+        <module>fast-util</module>
     </modules>
 
     <dependencies>

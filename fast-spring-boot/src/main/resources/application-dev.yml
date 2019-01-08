@@ -3,7 +3,7 @@ profile: dev_envrimont
 spring:
   # redis配置 ###############################################
   redis:
-    host: 192.168.199.212
+    host: 106.14.125.69
     port: 6379
     password: haoxijun123
     database: 1
