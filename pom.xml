@@ -29,6 +29,7 @@
         <module>fast-redis</module>
         <module>fast-util</module>
         <module>fast-agent</module>
+        <module>fast-study</module>
     </modules>
 
     <dependencies>
